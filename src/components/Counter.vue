@@ -1,6 +1,7 @@
 <template>
    <div class="count">
-      {{ storeCounter.count}}
+      {{ storeCounter.count}} <br>
+      {{storeCounter.selected_country}}
       <br>
     
       

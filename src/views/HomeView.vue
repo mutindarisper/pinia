@@ -17,13 +17,13 @@
     <br>
     <hr>
 
-    <input type="text"
+    <!-- <input type="text"
     v-model="storeCounter.populateName">
 
     <br>
     <br>
     <hr>
-    <Name />
+    <Name /> -->
   </div>
   <div class="selections">
 
@@ -46,7 +46,8 @@
     <br>
     <br>
 
-     <select name="" id="" @input="storeCounter.showSelectedCountry" @click="storeCounter.handleCountries" @change="storeCounter.showSelectedCountry">
+     <select name="" id="" @click="storeCounter.handleCountries" @change="storeCounter.showSelectedCountry" >
+      <!-- @change="storeCounter.showSelectedCountry   @input="storeCounter.showSelectedCountry" -->
       <option v-for="country in storeCounter.countries" :key="country">{{country}}</option>
     </select>
     <br>
@@ -56,7 +57,7 @@
     <hr>
     <br>
     <br>
-    <p>Showing the selected country in child component: Country.vue </p>
+    <!-- <p>Showing the selected country in child component: Country.vue </p> -->
     <Country />
 
     
@@ -68,14 +69,22 @@
 
 <script setup>
 // import { ref, computed } from 'vue';
+// import {  watch } from 'vue';
 import Counter from '@/components/Counter.vue';
 import { useCounterStore } from '@/stores/counter'
 import Name from '../components/Name.vue';
 import Country from '../components/Country.vue';
 
+// import { storeToRefs } from 'pinia'
+
 
 const storeCounter = useCounterStore()
 const storeName = useCounterStore() 
+//  storeCounter.countries  = storeToRefs(useCounterStore)
+
+// watch(storeCounter.countries, () => {
+//   console.log('state countries changed', storeCounter.countries)
+// })
 
 
   // const count = ref(0)

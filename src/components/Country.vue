@@ -1,11 +1,12 @@
 <template>
 <div class="country_container">
 
-    <h3>Display selected country</h3>
+    <h3>Country child component</h3>
 
-    <h4>{{storeCounter.countries}}</h4>
-    display count
-   <p>{{storeCounter.count}}</p>
+    <h2>{{storeCounter.selected_country}}</h2>
+    <input type="text" v-model="storeCounter.selected_country">
+    <!-- display count -->
+   <!-- <p>{{storeCounter.count}}</p> -->
 </div>
   
 </template>

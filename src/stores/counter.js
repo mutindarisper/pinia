@@ -2,17 +2,22 @@ import { defineStore } from 'pinia'
 
 export const useCounterStore = defineStore({
   id: 'counter',
+
+  
   state: () => ({ //where we store reactive data properties just like in data in options api
    count: 2,
    name: 'eng',
    indicators: ['water', 'land', 'air'],
    sub_indicators: [],
-   countries: ['select country']
+   countries: ['select country'],
+   selected_country: ''
   }),
+  // watch(() => this.countries, (n) => console.log(n, " value changed"));
+  
   
   actions: { //methods that allow access and modify data in state just like in methods options api
     increaseCount() { // in vuex, to call these methods, use dispatch ('increaseCount')
-      this.count = 40
+      this.count++
     },
     decreaseCount() {
       this.count--
@@ -37,18 +42,21 @@ export const useCounterStore = defineStore({
     showSelectedCountry($event){
       var selected_country = $event.target.value
       console.log(selected_country, 'selected country')
-      
+      // this.countries =  selected_country
+      this.selected_country =  selected_country
+      console.log(this.selected_country , 'changed selected country')
+      return selected_country
 
-      if(selected_country === 'Kenya') return 'Kenya'
-      if(selected_country === 'South Africa') return 'South Africa'
-      if(selected_country === 'Ethiopia') return 'Ethiopia'
-      if(selected_country === 'Rwanda') return 'Rwanda'
+      // if(selected_country === 'Kenya') return 'Kenya'
+      // if(selected_country === 'South Africa') return 'South Africa'
+      // if(selected_country === 'Ethiopia') return 'Ethiopia'
+      // if(selected_country === 'Rwanda') return 'Rwanda'
    
-      // return selected_country
-      
 
     }
   },
+
+  
 
   getters: { //grab sth from the state, modify it and return sth similar to computed
     oddOrEven: (state) => { //in vuex, storecounter.getters.oddOrEven   ///// in pinnia, storecounter.oddOrEven
@@ -61,9 +69,16 @@ export const useCounterStore = defineStore({
     },
 
     
-    handleCountriesChange: (state) => {
-      console.log(state.countries, 'countries updated')
-      // return state.countries
+    handleCountriesChange: (state ) => {
+      if(state.selected_country !== null) {
+        state.selected_country = this.selected_country
+      }
+     
+      
+      
+      
+      // console.log(state.countries, 'countries updated')
+      return  state.selected_country
 
     },
 
